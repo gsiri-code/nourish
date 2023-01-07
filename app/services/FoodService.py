@@ -1,9 +1,13 @@
 import requests
+import os
+from dotenv import load_dotenv, find_dotenv
+
+load_dotenv(find_dotenv())
 
 
 class FoodService:
     def __init__(self):
-        self.api_key = '1TwA6TX0vWloflfUuqEhWrBhraJzgeWiDVRWfNcZ'  # TODO: .env
+        self.api_key = os.getenv('api_key')
 
     def search(self, query: str, page: int = 1):
         """returns
