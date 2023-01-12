@@ -7,12 +7,18 @@
 </head>
 <body>
 
-<h1>desc</h1>
-<p>GTIN/UPC: "gtinUpc"</p>
-<p>Food Category: "brandedFoodCategory"</p>
-<p>Brand Owner: "brandOwner"</p>
-<p>Portion: "householdServingFullText"("servingSize" + "servingSizeUnit")</p>
-<p>Energy: "calories"</p>
+<h1>{{ desc }}</h1>
+<p>GTIN/UPC: {{ gtin_upc }}</p>
+<p>Food Category: {{ food_category }}</p>
+<p>Brand Owner: {{ brand_owner }}</p>
+<p>Portion: {{ serving_size }}</p>
+<p>Energy: {{ energy }} kcal</p>
+<p>Protein: {{ protein }} g</p>
+<p>Fat: {{ fat }} g</p>
+<p>Carbohydrate: {{ carbohydrate }} g</p>
+<p>Fiber: {{ fiber }} g</p>
+<p>Sugars: {{ sugars }} g</p>
+<p>Cholesterol: {{ cholesterol }} mg</p>
 
 </body>
 </html>
