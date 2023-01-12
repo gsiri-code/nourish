@@ -2,6 +2,7 @@ import unittest
 import requests
 from FoodService import *
 
+
 class TestFoodService(unittest.TestCase):
 
     def test_search(self):
@@ -13,4 +14,3 @@ class TestFoodService(unittest.TestCase):
             'foods': test_request['foods']
         }
         self.assertEqual(FoodService().search('apple'), test_food_request)
-
