@@ -1,6 +1,6 @@
 from flask import Flask
 from flask import render_template
-from services import FoodService
+from services.FoodService import *
 
 app = Flask(__name__)
 
@@ -8,7 +8,7 @@ app = Flask(__name__)
 @app.route("/food/<food_id>")
 def food(food_id):
     try:
-        food_info = FoodService.FoodService().get(int(food_id))
+        food_info = FoodService().get(int(food_id))
     except ValueError:
         return "Invalid food id"
 

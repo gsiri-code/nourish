@@ -10,7 +10,7 @@
 <p>GTIN/UPC: {{ food_info['gtinUpc'] }}</p>
 <p>Food Category: {{ food_info['brandedFoodCategory'] }}</p>
 <p>Brand Owner: {{ food_info['brandOwner'] }}</p>
-<p>Portion: {{ food_info['servingSize'] }}</p>
+<p>Portion: {{ food_info['servingSize'] }}{{ food_info['servingSizeUnit'] }}</p>
 <p>Energy: {{ nutrients_info['calories']['value'] }} kcal</p>
 <p>Protein: {{ nutrients_info['protein']['value'] }} g</p>
 <p>Fat: {{ nutrients_info['fat']['value'] }} g</p>
