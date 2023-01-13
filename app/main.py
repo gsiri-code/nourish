@@ -1,9 +1,15 @@
 from flask import Flask
 from flask import render_template
+from services.FoodService import *
 
 app = Flask(__name__)
 
 
-@app.route("/")
-def hello_world():
-    return render_template("index.html")
+@app.route("/food/<food_id>")
+def food(food_id):
+    try:
+        food_info = FoodService().get(int(food_id))
+    except ValueError:
+        return "Invalid food id"
+
+    return render_template('food.html', food_info=food_info, nutrients_info=food_info['labelNutrients'])
