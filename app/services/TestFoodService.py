@@ -1,19 +1,17 @@
 import unittest
-from unittest.mock import *
-from FoodService import *
-
-requests = Mock()
+from unittest import mock
+from FoodService import FoodService
 
 
 class TestFoodService(unittest.TestCase):
 
-    @patch('FoodService.requests')
-    def test_search(self, requests_mock):
-        """test for fdcId if its equal to FoodService apple fdcId search"""
-        test_equal = {"foods": [ {"fdcId": 454004}]}
+    @mock.patch('FoodService.requests')
+    def test_search(self, mock_requests):
+        """Test that the search method returns the correct data using a mock response from the API. """
+        mock_response = mock.Mock()
+        mock_response.json.return_value = {"foods": [{'fdcId': 454004}]}
 
-        requests_response_mock = MagicMock()
-        requests_response_mock.json.return_value = {"foods": [ {'fdcId': 454004} ]}
-        requests_mock.get.return_value = requests_response_mock
+        mock_requests.get.return_value = mock_response  # mock the response
+        response = FoodService().search('apple')
 
-        self.assertEqual(FoodService().search('apple'), test_equal)
+        self.assertEqual(response['foods'][0]['fdcId'], 454004)
