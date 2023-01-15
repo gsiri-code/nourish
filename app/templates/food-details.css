@@ -26,6 +26,11 @@ main {
     align-content: center;
     flex-direction: row;
     flex-wrap: wrap;
+    transition: .3s;
+}
+
+.name-container:hover {
+    scale: 1.01;
 }
 
 .name {
@@ -69,6 +74,11 @@ main {
     background: rgba(242, 240, 217, 1);
     border-radius: 10px;
     padding: 10px;
+    transition: .3s;
+}
+
+.content-item:hover {
+    scale: 1.01;
 }
 
 .content-item .title {
