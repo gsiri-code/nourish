@@ -6,7 +6,8 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Food Details Page</title>
-    <link rel="stylesheet" href="food-details.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='food-details/food-details.css') }}">
+    <script src="{{ url_for('static', filename='food-details/food-details.js') }}" defer></script>
 </head>
 <body>
 
@@ -61,25 +62,5 @@
         </div>
     </div>
 </main>
-
-<script>
-    const name = document.getElementById('name');
-    const details = document.getElementsByClassName('content-item');
-
-    const sound = new Audio('click.wav');
-    sound.volume = 0.1;
-
-
-    const handleClick = () => {
-        console.log('clicked');
-        sound.play();
-    }
-
-    name.addEventListener('click', handleClick);
-    for (const detail of details) {
-        detail.addEventListener('click', handleClick);
-    }
-</script>
-
 </body>
 </html>
