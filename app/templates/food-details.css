@@ -26,10 +26,9 @@ main {
     align-content: center;
     flex-direction: row;
     flex-wrap: wrap;
-    transition: .3s;
 }
 
-.name-container:hover {
+.name:hover {
     scale: 1.01;
 }
 
@@ -38,6 +37,8 @@ main {
     background: #F5C18E;
     border-radius: 10px;
     padding: 10px;
+    transition: .3s;
+    cursor: pointer;
 }
 
 .name h1 {
@@ -75,6 +76,7 @@ main {
     border-radius: 10px;
     padding: 10px;
     transition: .3s;
+    cursor: pointer;
 }
 
 .content-item:hover {

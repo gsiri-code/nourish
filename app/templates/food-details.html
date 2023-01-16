@@ -12,7 +12,7 @@
 
 <main>
     <div class="name-container">
-        <div class="name">
+        <div class="name" id="name">
             <h1>name-of-item.</h1>
         </div>
     </div>
@@ -61,6 +61,25 @@
         </div>
     </div>
 </main>
+
+<script>
+    const name = document.getElementById('name');
+    const details = document.getElementsByClassName('content-item');
+
+    const sound = new Audio('click.wav');
+    sound.volume = 0.1;
+
+
+    const handleClick = () => {
+        console.log('clicked');
+        sound.play();
+    }
+
+    name.addEventListener('click', handleClick);
+    for (const detail of details) {
+        detail.addEventListener('click', handleClick);
+    }
+</script>
 
 </body>
 </html>
