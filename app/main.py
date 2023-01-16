@@ -12,4 +12,5 @@ def food(food_id):
     except ValueError:
         return "Invalid food id"
 
-    return render_template('food.html', food_info=food_info, nutrients_info=food_info['labelNutrients'])
+    print(food_info)
+    return render_template('food-details.html', food_info=food_info, nutrients_info=food_info['labelNutrients'])
