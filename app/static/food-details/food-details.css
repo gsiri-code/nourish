@@ -39,6 +39,9 @@ main {
     padding: 10px;
     transition: .3s;
     cursor: pointer;
+    min-width: 400px;
+    text-align: center;
+    margin-left: 30px;
 }
 
 .name h1 {
@@ -113,6 +116,10 @@ main {
     }
     .content-container {
         margin: 15px 0 0 0;
+    }
+    .name {
+        min-width: auto;
+        margin-left: 0;
     }
 }
 
