@@ -5,6 +5,10 @@ from services.FoodService import *
 app = Flask(__name__)
 
 
+@app.route("/search/<food_description>")
+def search(food_description):
+    return render_template('food-search.html')
+
 @app.route("/food/<food_id>")
 def food(food_id):
     try:
