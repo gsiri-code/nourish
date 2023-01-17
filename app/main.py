@@ -7,7 +7,10 @@ app = Flask(__name__)
 
 @app.route("/search/<food_description>")
 def search(food_description):
-    return render_template('food-search.html')
+    food_list = FoodService().search(food_description)["foods"]
+
+    return render_template('food-search.html', food_list=food_list)
+
 
 @app.route("/food/<food_id>")
 def food(food_id):
