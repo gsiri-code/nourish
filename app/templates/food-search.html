@@ -8,7 +8,19 @@
 <body>
 
 {% for food in food_list %}
-    <span class="hidden"> {{ food["fdcId"] }}</span>
+    <span class="hidden">{{ food["fdcId"] }}</span>
+    <p>{{ food["description"] }}</p>
+    <p>{{ food["brandOwner"] }}</p>
+    <p>{{ food["servingSize"] }}</p>
+    {% set serving_size = food["servingSize"] / 100%}
+    <p>{{ serving_size }}</p>
+    {% for nutrient in food["foodNutrients"] %}
+        {% if nutrient["nutrientId"] == 1008 %}
+            {% set calorie_count_per_portion = nutrient["value"] * serving_size %}
+            {{ (calorie_count_per_portion)|round(1) }}
+
+            {% endif %}
+        {% endfor %}
 {% endfor %}
 
 </body>
