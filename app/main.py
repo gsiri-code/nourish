@@ -5,6 +5,15 @@ from services.FoodService import *
 app = Flask(__name__)
 
 
+@app.route("/search/<food_description>")
+def search(food_description):
+    try:
+        food_list = FoodService().search(food_description)["foods"]
+    except requests.exceptions.Timeout:
+        return "Timeout error, check your internet connection and try again"
+    return render_template('food-search.html', food_list=food_list)
+
+
 @app.route("/food/<food_id>")
 def food(food_id):
     try:
