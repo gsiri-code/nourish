@@ -1,0 +1,155 @@
+@import url('../font.css');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Space Mono', monospace;
+    font-size: 24px;
+}
+
+body {
+    background-color: rgba(242, 240, 217, 1);
+}
+
+main {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-content: center;
+    height: 100vh;
+}
+
+.name-container {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.name:hover {
+    scale: 1.01;
+}
+
+.name {
+    width: 90%;
+    background: #F5C18E;
+    border-radius: 10px;
+    padding: 10px;
+    transition: .3s;
+    cursor: pointer;
+    min-width: 400px;
+    text-align: center;
+    margin-left: 30px;
+}
+
+.name h1 {
+    font-weight: 700;
+    font-size: 120px;
+    line-height: 100px;
+    color: #F2F0D9;
+}
+
+.content-container {
+    background: rgba(172, 204, 172, 1);
+    border-radius: 10px;
+    min-width: calc(50% - 35px);
+    margin: 30px;
+    padding: 30px;
+}
+
+.content {
+    background: #94B194;
+    border-radius: 10px;
+    display: grid;
+    height: 100%;
+    grid-template:
+        "a a"
+        "a a"
+        "a a"
+        "a a"
+        "a a";
+    grid-gap: 10px;
+    padding: 10px;
+}
+
+.content-item {
+    background: rgba(242, 240, 217, 1);
+    border-radius: 10px;
+    padding: 10px;
+    transition: .3s;
+    cursor: pointer;
+}
+
+.content-item:hover {
+    scale: 1.01;
+}
+
+.content-item .title {
+    font-weight: 700;
+}
+
+@media screen and (max-width: 1060px) {
+    * {
+        font-size: 20px;
+    }
+    .name h1 {
+        font-size: 100px;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .name h1 {
+        font-size: 80px;
+    }
+    main {
+        flex-direction: column;
+        height: auto;
+        margin: 50px 35px;
+    }
+    * {
+        font-size: 24px;
+    }
+    .name {
+        width: 100%;
+    }
+    .content-container {
+        margin: 15px 0 0 0;
+    }
+    .name {
+        min-width: auto;
+        margin-left: 0;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .name h1 {
+        font-size: 60px;
+    }
+    * {
+        font-size: 24px;
+    }
+}
+
+@media screen and (max-width: 630px) {
+    .name h1 {
+        font-size: 32px;
+    }
+    .content {
+        grid-template:
+        "a"
+        "a"
+        "a"
+        "a"
+        "a"
+        "a"
+        "a"
+        "a"
+        "a"
+        "a";
+    }
+    main {
+        margin: 25px 12px;
+    }
+}
