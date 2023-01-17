@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='food-search.css') }}">
 </head>
 <body>
 
 {% for food in food_list %}
-    <p>{{ food }}</p>
+    <span class="hidden"> {{ food["fdcId"] }}</span>
 {% endfor %}
 
 </body>
