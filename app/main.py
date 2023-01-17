@@ -13,3 +13,8 @@ def food(food_id):
         return "Invalid food id"
 
     return render_template('food.html', food_info=food_info, nutrients_info=food_info['labelNutrients'])
+
+
+@app.route("/new-results-page")
+def new_results_page():
+    return render_template('new-results-page.html')
