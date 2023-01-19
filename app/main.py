@@ -1,16 +1,17 @@
-from flask import Flask
+from flask import Flask, request
 from flask import render_template
 from services.FoodService import *
 
 app = Flask(__name__)
 
 
-@app.route('/')
-def welcome():
+@app.route('/', methods=['GET', 'POST'])
+def start():
+#    search_food = request.args.get['search']
     return render_template('start-page.html')
 
 
-@app.route('/search/<food_description>')
+@app.route('/search/<food_description>', methods=['POST'])
 def search(food_description):
     try:
         food_list = FoodService().search(food_description)['foods']
