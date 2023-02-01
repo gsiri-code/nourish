@@ -16,6 +16,8 @@ def search():
         food_list = FoodService().search(query)['foods']
     except requests.exceptions.Timeout:
         return 'Timeout error, check your internet connection and try again'
+    except KeyError:
+        return 'Invalid key, not found in dictionary'
 
     return render_template('food-search.html', food_list=food_list)
 
