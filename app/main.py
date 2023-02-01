@@ -1,5 +1,4 @@
-from flask import Flask, request
-from flask import render_template
+from flask import Flask, request, render_template, url_for
 from services.FoodService import *
 
 app = Flask(__name__)
@@ -7,17 +6,19 @@ app = Flask(__name__)
 
 @app.route('/', methods=['GET', 'POST'])
 def start():
-#    search_food = request.args.get['search']
     return render_template('start-page.html')
 
 
-@app.route('/search/<food_description>', methods=['POST'])
-def search(food_description):
+@app.route('/search', methods=['GET', 'POST'])
+def search():
     try:
-        food_list = FoodService().search(food_description)['foods']
+        query = request.args.get('q')
+        food_list = FoodService().search(query)['foods']
     except requests.exceptions.Timeout:
         return 'Timeout error, check your internet connection and try again'
+
     return render_template('food-search.html', food_list=food_list)
+
 
 
 @app.route('/food/<food_id>')
