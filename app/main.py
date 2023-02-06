@@ -17,7 +17,7 @@ def search():
     except requests.exceptions.Timeout:
         return 'Timeout error, check your internet connection and try again'
     except KeyError:
-        return 'Invalid key, not found in dictionary'
+        return f"Your search inquiry doesn't exist, make sure that you haven't typed special symbols"
 
     return render_template('food-search.html', food_list=food_list)
 
