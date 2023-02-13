@@ -13,13 +13,15 @@ class FoodService:
         """returns
 
         {
+            totalHits: int,
+
             foods: Array<{
-                 "fdcId": int
-                "description": str
-                "lowercaseDescription": str
-                "dataType": str
-                "gtinUpc": str
-                "publishedDate": str
+                "fdcId": int,
+                "description": str,
+                "lowercaseDescription": str,
+                "dataType": str,
+                "gtinUpc": str,
+                "publishedDate": str,
                 "brandOwner": str,
                 "ingredients": str,
                 "marketCountry": str,
