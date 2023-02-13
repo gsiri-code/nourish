@@ -6,7 +6,8 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='food-search.css') }}">
 </head>
 <body>
-
+<p>{{ results_count }} results</p>
+<br>
 {% for food in food_list %}
     <span class="hidden">{{ food["fdcId"] }}</span>
     <p>Product name: {{ food["description"] }}</p>

@@ -46,7 +46,8 @@ class FoodService:
         url = f'https://api.nal.usda.gov/fdc/v1/foods/search?query={query}&dataType=&pageSize=25&pageNumber={page}&sortBy=dataType.keyword&sortOrder=asc&api_key={self.api_key}'
         response = requests.get(url).json()
         return {
-            'foods': response['foods']
+            'foods': response['foods'],
+            'totalHits': response['totalHits']
         }
 
     def get(self, id: int):
