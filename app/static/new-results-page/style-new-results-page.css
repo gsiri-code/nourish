@@ -13,10 +13,9 @@
 body {
     background: #F2F0D9;
     padding: 20px 20px 10px 20px;
-    /*min-width: 900px;*/
 }
 
-.results-area {
+main{
     background-color: #F5C28E;
     display: block;
     border-radius: 10px;
@@ -39,6 +38,17 @@ header {
     justify-content: start;
     align-items: center;
     flex-direction: row;
+}
+
+.dumpling-container{
+    position: relative;
+    justify-content: start;
+    align-items: center;
+    flex-direction: row;
+    display: flex;
+    min-width: 300px;
+    max-height: 120px;
+    bottom: 5px;
 }
 
 .count__number-container {
@@ -73,9 +83,7 @@ header {
 }
 
 .rice {
-
     position: relative;
-    /*scale: 1;*/
     transition: .3s;
     top: 5px;
 
@@ -84,7 +92,6 @@ header {
 .bread {
     position: relative;
     top: 7px;
-    /*scale: 0.7;*/
     transition: .3s;
 
 
@@ -97,22 +104,14 @@ header {
 
 }
 
-#arrow {
+[class="fa-solid fa-arrow-left"] {
     position: relative;
     right: 20px;
     transition: .3s;
 }
 
-#arrow:hover {
+[class="fa-solid fa-arrow-left"]:hover {
     scale: 1.3;
-}
-
-#dumpling-container {
-    display: flex;
-    min-width: 300px;
-    max-height: 120px;
-    position: relative;
-    bottom: 5px;
 }
 
 .count-container > img {
@@ -187,9 +186,6 @@ header {
 
 }
 
-#title-static-text {
-    /*min-width: 130px;*/
-}
 
 .text-container {
     width: 130px;
@@ -243,11 +239,11 @@ header {
 }
 
 .rice:hover {
-    scale: .7;
+    scale: 1.2;
 }
 
 .bread:hover {
-    scale: .80;
+    scale: 1.2;
 
 }
 
@@ -280,14 +276,21 @@ header {
         flex-wrap: wrap;
 
     }
+    /*.results-table{*/
+    /*    height:65vh;*/
+    /*}*/
 
-
-    .header-icon {
-        position: relative;
-        top: 110px;
-        right: 200px;
-
+    @media (max-width:1001px){
+        .header-icon {
+            position: relative;
+            top: 115px;
+            /*right: 200px;*/
+        }
+        .results-table{
+        height:67vh;
+        }
     }
+
 
     .rice {
         position: relative;
@@ -307,13 +310,7 @@ header {
     }
 
 
-    .rice:hover {
-        scale: 1.2;
-    }
 
-    .bread:hover {
-        scale: 1.2;
-    }
 
     .count-container {
         position: relative;
@@ -321,14 +318,13 @@ header {
         bottom: 10px;
     }
 
-    #dumpling-container {
+    .dumpling-container {
         left: 230px;
         bottom: 20px;
     }
 
-    #dumpling-container > img {
+    .dumpling-container > img {
         position: relative;
-        scale: 1;
     }
 
     .dum_1 {
@@ -342,13 +338,8 @@ header {
 
     .dum_3 {
         right: 40px;
-
     }
 
-
-    .results-table {
-        height:67.5vh;
-    }
 
 
     .item-button {
@@ -363,10 +354,25 @@ header {
         flex-direction: column;
 
     }
-    #dumpling-container{
+    .dumpling-container{
         display: none;
 
     }
+
+    .dum_1{
+        display: none;
+    }
+
+    .dum_2{
+        display: none;
+    }
+
+    .dum_3{
+        display: none;
+    }
+
+
+
     .header-icon{
         display: none;
 
