@@ -5,6 +5,10 @@ from services.FoodService import *
 app = Flask(__name__)
 
 
+@app.route("/")
+def welcome_page():
+    return render_template('welcome-page.html')
+
 @app.route("/food/<food_id>")
 def food(food_id):
     try:
