@@ -4,9 +4,9 @@ from services.FoodService import *
 app = Flask(__name__)
 
 
-@app.route('/', methods=['GET', 'POST'])
-def start():
-    return render_template('start-page.html')
+@app.route("/")
+def welcome_page():
+    return render_template('welcome-page.html')
 
 
 @app.route('/search', methods=['GET', 'POST'])

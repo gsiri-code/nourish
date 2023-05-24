@@ -1,0 +1,520 @@
+@import url('../font.css');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Space Mono', monospace;
+    font-size: 24px;
+}
+
+body {
+    background-color: rgba(242, 240, 217, 1);
+}
+
+main {
+}
+
+
+.title {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 114px;
+    line-height: 100px;
+    color: #F5C28E;
+}
+
+.title-cont {
+    margin-top: 50px;
+    margin-left: 20px;
+    max-width: 700px;
+}
+
+@keyframes title {
+    0% {
+        width: 21%;
+    }
+    100% {
+        width: 80%;
+    }
+}
+
+.title::after {
+    animation: 3s ease-out 0s 1 title;
+    display: block;
+    content: '';
+    width: 80%;
+    height: 20px;
+    background: rgba(245, 194, 142, 1);
+    border-radius: 10px;
+    float: right;
+}
+
+main {
+    margin-top: 100px;
+    display: flex;
+}
+
+.sidebar {
+    background: #F5C28E;
+    border-radius: 10px;
+    max-width: 375px;
+    padding: 10px 5px;
+}
+
+.sidetext, .underline {
+    font-weight: 700;
+    font-size: 80px;
+    line-height: 87px;
+    letter-spacing: -0.05em;
+    color: #F2F0D9;
+}
+
+.underline::after {
+    display: block;
+    content: '';
+    width: 45%;
+    height: 10px;
+    background: #F2F0D9;
+    border-radius: 10px;
+    margin-top: -7px;
+    margin-left: 20px;
+}
+
+.search-buttons > .label {
+    font-weight: 700;
+    font-size: 58px;
+    line-height: 60px;
+    color: #F2F0D9;
+    float: right;
+    max-width: 610px;
+}
+
+.search-buttons {
+    float: left;
+}
+
+.label {
+    background: #F5C28E;
+    border-radius: 10px;
+}
+
+.search {
+    margin-left: 1.5em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-bottom: 10px;
+}
+
+/*Search box*/
+
+.search-box .btn {
+    border: 0;
+    background-color: transparent;
+}
+
+.search-box form {
+    background: #94B194;
+    border-radius: 10px;
+    float: left;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.search-box .input {
+    background-color: transparent;
+    font-weight: 700;
+    font-size: 25px;
+    line-height: 22px;
+    color: #F2F0D9;
+    border: 0;
+    width: 100%;
+    padding: 10px;
+}
+
+.search-box .input::placeholder {
+    color: #F2F0D9;
+}
+
+.search-box .buttons {
+    margin: 10px;
+    min-width: 15%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.search-box .buttons button:last-child {
+    margin-left: 15px;
+}
+
+.search-box {
+    background: #ACCCAC;
+    border-radius: 10px;
+    padding: 5px;
+    min-height: 60px;
+    float: left;
+    width: 100%;
+
+    -webkit-box-shadow: 10px 10px 0 0 rgba(148, 177, 148, 1);
+    -moz-box-shadow: 10px 10px 0 0 rgba(148, 177, 148, 1);
+    box-shadow: 10px 10px 0 0 rgba(148, 177, 148, 1);
+}
+
+/*Search buttons*/
+
+.search-buttons button {
+    border: 0;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: #94B194;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.search-buttons .buttons-top {
+    display: grid;
+    grid-template:  "a a" 1fr;
+    background: #ACCCAC;
+    border-radius: 10px 10px 0 0;
+    width: 300px;
+    height: 150px;
+    float: left;
+    -webkit-box-shadow: 10px 10px 0 0 rgba(148, 177, 148, 1);
+    -moz-box-shadow: 10px 10px 0 0 rgba(148, 177, 148, 1);
+    box-shadow: 10px 10px 0 0 rgba(148, 177, 148, 1);
+}
+
+.search-buttons .buttons-bottom {
+    display: grid;
+    grid-template:  "a a a a a a a" 1fr;
+    background: #ACCCAC;
+    border-radius: 0 10px 10px 10px;
+    width: 960px;
+    height: 150px;
+    float: left;
+    -webkit-box-shadow: 10px 10px 0 0 rgba(148, 177, 148, 1);
+    -moz-box-shadow: 10px 10px 0 0 rgba(148, 177, 148, 1);
+    box-shadow: 10px 10px 0 0 rgba(148, 177, 148, 1);
+}
+
+.buttons-mobile {
+    display: none;
+}
+
+.search-buttons .item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.orange, .watermelon {
+    padding-top: 25px;
+}
+
+
+.input:focus {
+    outline: none;
+}
+
+.item button {
+    cursor: pointer;
+    transition: .3s;
+}
+
+.btn {
+    cursor: pointer;
+    transition: .3s;
+}
+
+.btn:hover {
+    transform: scale(1.1);
+}
+
+.item button:hover {
+    transform: scale(1.1);
+}
+
+@media screen and (max-width: 1400px) {
+    .container {
+        max-width: 1140px;
+        margin: 0 auto;
+    }
+
+    .search-buttons .buttons-bottom {
+        width: 700px;
+        height: 100px;
+    }
+
+    .search-buttons button {
+        width: 70px;
+        height: 70px;
+    }
+
+    .search-buttons button svg {
+        scale: 0.7;
+    }
+
+    .search-buttons .buttons-top {
+        width: 210px;
+        height: 100px;
+    }
+
+    .search-buttons > .label {
+        max-width: 440px;
+        font-size: 40px;
+        line-height: 1;
+    }
+
+    .sidetext, .underline {
+        font-size: 60px;
+        line-height: 109%;
+    }
+
+    .underline::after {
+        width: 30%;
+        height: 8px;
+        margin-top: -6px;
+    }
+
+    .title {
+        font-size: 96px;
+    }
+
+    .search-box .input {
+        font-size: 22px;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .container {
+        max-width: 960px;
+        margin: 0 auto;
+    }
+
+    .search-buttons .buttons-bottom {
+        width: 620px;
+        height: 100px;
+    }
+
+    .search-buttons button {
+        width: 50px;
+        height: 50px;
+    }
+
+    .search-buttons button svg {
+        scale: 0.5;
+    }
+
+    .search-buttons .buttons-top {
+        width: 150px;
+        height: 75px;
+    }
+
+    .search-buttons > .label {
+        max-width: 375px;
+        font-size: 36px;
+        line-height: 1;
+    }
+
+    .sidebar {
+        max-width: 300px
+    }
+
+    .sidetext, .underline {
+        font-size: 50px;
+    }
+
+    .underline::after {
+        width: 30%;
+        height: 8px;
+        margin-top: -6px;
+    }
+
+    .title-cont {
+        margin-top: 25px;
+        max-width: 500px
+    }
+
+    .title {
+        font-size: 80px;
+        line-height: 83%;
+    }
+
+    .search-box .input {
+        font-size: 22px;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .container {
+        max-width: 720px;
+        margin: 0 auto;
+    }
+
+    main {
+        margin-top: 50px;
+        justify-content: space-between;
+    }
+
+    .sidebar {
+        max-width: 30%;
+    }
+
+    .search {
+        width: 65%;
+        margin-left: 0;
+    }
+
+
+    .search-buttons {
+        margin-top: 20px;
+    }
+
+    .search-buttons .buttons-bottom {
+        width: 470px;
+    }
+
+    .search-buttons > .label {
+        max-width: 300px;
+        font-size: 24px;
+        padding: 5px;
+    }
+
+    .search-box .buttons {
+        min-width: 20%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .container {
+        max-width: 90%;
+    }
+
+    .search-buttons > .label {
+        max-width: 100%;
+        padding: 5px;
+    }
+
+    main {
+        flex-direction: column;
+        align-items: center;
+        margin-top: 20px;
+    }
+
+    .search-box .buttons {
+
+        min-width: 15%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+
+    .title-cont {
+        max-width: 100%;
+    }
+
+    .sidebar {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .search {
+        width: 100%;
+    }
+
+    .buttons-mobile {
+        grid-row-gap: 10px;
+        height: auto;
+        padding: 10px 0;
+    }
+
+    .sidetext, .underline {
+        font-size: 36px;
+    }
+
+    .sidebar {
+        max-width: 100%;
+    }
+
+    .underline::after {
+        display: none;
+    }
+
+    .title {
+        font-size: 60px;
+    }
+
+    .title::after {
+        height: 10px;
+        width: 80%;
+    }
+
+    @keyframes title {
+        0% {
+            width: 60%;
+        }
+        100% {
+            width: 80%;
+        }
+    }
+    .search-buttons button {
+        width: 100px;
+        height: 100px;
+    }
+
+    .search-buttons button svg {
+        scale: 1;
+    }
+
+
+    .search-buttons .buttons-top, .search-buttons .buttons-bottom {
+        display: none;
+    }
+
+    .buttons-mobile {
+        display: grid;
+        width: 100%;
+        grid-template:  "a a a" 1fr
+                        "a a a" 1fr
+                        "a a a" 1fr;
+        background: #ACCCAC;
+        border-radius: 10px;
+        float: left;
+        -webkit-box-shadow: 10px 10px 0 0 rgba(148, 177, 148, 1);
+        -moz-box-shadow: 10px 10px 0 0 rgba(148, 177, 148, 1);
+        box-shadow: 10px 10px 0 0 rgba(148, 177, 148, 1);
+        margin-top: 20px;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    @keyframes title {
+        0% {
+            width: 40%;
+        }
+        100% {
+            width: 60%;
+        }
+    }
+
+    .title::after {
+        height: 10px;
+        width: 60%;
+    }
+
+    .search-box .buttons {
+        min-width: 30%;
+    }
+}
+
+@media screen and (min-width: 1400px) {
+    .container {
+        max-width: 1368px;
+        margin: 0 auto;
+    }
+}
