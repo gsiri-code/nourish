@@ -23,7 +23,7 @@ h1{
     margin-left:70px;
 }
 .title-underline{
-    width: 500px;
+    width: 30%;
     height:18px;
     margin-left:200px;
     background-color:#F5C28E;
@@ -328,6 +328,43 @@ footer button:hover{
         justify-content: center;
     }
 
+}
 
-    
+@media (max-width:600px) {
+    .page-title{
+        margin-left: 10px;
+        font-size: 65px;
+    }
+
+    .title-underline{
+        margin-left: 100px;
+        width: 50%;
+    }
+
+    .example_food_container{
+        visibility: hidden;
+        height: 0;
+    }
+    main{
+        flex-direction: column;
+        padding: 0 15px;
+    }
+
+
+    .search-results-container{
+        width: 100%;
+        margin-top: 10px;
+
+    }
+
+    .search-box{
+        margin-top: 20px;
+        width: 90%;
+    }
+    .search-box input{
+        font-size: 10px;
+
+    }
+
+
 }
