@@ -440,7 +440,7 @@ main{
     }
 
     .example_food_container{
-        visibility: hidden;
+        display: None;
         height: 0;
     }
     main{
@@ -451,7 +451,7 @@ main{
 
     .search-results-container{
         width: 100%;
-        margin-top: 20px;
+        margin-top: 120px;
 
     }
 
