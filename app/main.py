@@ -21,9 +21,8 @@ def search():
         food_results_count = food_response['totalHits']
     except requests.exceptions.Timeout:
         return 'Timeout error, check your internet connection and try again'
-    #except KeyError:
-     #   return f"Your search inquiry doesn't exist, make sure that you haven't typed special symbols"
-
+    except KeyError:
+        return f"Your search inquiry doesn't exist, make sure that you haven't typed special symbols"
 
     return render_template('food-search.html', food_list=food_list, results_count=food_results_count)
 

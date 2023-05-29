@@ -57,5 +57,3 @@ class FoodService:
         url = f'https://api.nal.usda.gov/fdc/v1/food/{id}?nutrients=0&api_key={self.api_key}'
         data = requests.get(url).json()
         return data
-
-FoodService().search("apple")
