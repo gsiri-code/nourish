@@ -7,7 +7,7 @@ load_dotenv()
 
 class FoodService:
     def __init__(self):
-        self.api_key = os.getenv("API_KEY")
+        self.api_key = os.getenv('API_KEY')
 
     def search(self, query: str, page: int = 1):
         """returns
