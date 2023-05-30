@@ -36,6 +36,9 @@ def food(food_id):
 
     return render_template('food-details.html', food_info=food_info, nutrients_info=food_info['labelNutrients'])
 
+@app.route("/search-page")
+def search_page():
+    return render_template('search_page.html')
 
 @app.route("/new-results-page")
 def new_results_page():
