@@ -255,6 +255,10 @@ main{
     display: flex;
 }
 
+.text-container{
+    max-width: 50px;
+}
+
 .item-button{
     padding:0 20px;
     border:0;

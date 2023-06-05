@@ -8,13 +8,23 @@ app = Flask(__name__)
 
 @app.route("/")
 def welcome_page():
-    return render_template('start-page.html')
+    try:
+        query = request.args.get('q')
+        print(query)
+
+    except requests.exceptions.Timeout:
+        return 'Timeout error, check your internet connection and try again'
+    except KeyError:
+        return f"Your search inquiry doesn't exist, make sure that you haven't typed special symbols"
+
+    return render_template('welcome-page.html')
 
 
 @app.route('/search', methods=['GET', 'POST'])
 def search():
     try:
         query = request.args.get('q')
+        print(query)
 
         food_response = FoodService().search(query)
         food_list = food_response['foods']
@@ -24,7 +34,7 @@ def search():
     except KeyError:
         return f"Your search inquiry doesn't exist, make sure that you haven't typed special symbols"
 
-    return render_template('food-search.html', food_list=food_list, results_count=food_results_count)
+    return render_template('search_page.html', query=query,food_list=food_list, results_count=food_results_count)
 
 
 @app.route('/food/<food_id>')

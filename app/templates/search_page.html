@@ -20,13 +20,13 @@
 
     <main>
         <div class="search-box">
-            <form action="">
-                <input type="text" class="input" placeholder="Please input a food item or select the following tags">
+            <form action="search" method="GET">
+                <input type="text" class="input" name="q" placeholder="Please input a food item or select the following tags">
                 <div class="buttons">
                     <button class="btn">
                         <i class="fa-solid fa-circle-xmark fa-xl" style="color: #F2F0D9;"></i>
                     </button>
-                    <button type="submit" class="btn">
+                    <button type="submit" class="btn" value="Submit">
                         <i class="fa-solid fa-magnifying-glass fa-xl" style="color: #F2F0D9;"></i>
                     </button>
                 </div>
@@ -46,11 +46,16 @@
             <header class="src-header">
                 <div class="item-count-container">
                     <p class="item-count-text">Count:</p>
-                    <p> 00 </p>
+                    {% if results_count > 100 %}
+                        <p>99+</p>
+                    {% else %}
+                        <p> {{ results_count }}</p>
+                    {% endif %}
+
                 </div>
 
                 <div class="item-name-container">
-                    <h2 class="item-name">Name of item</h2>
+                    <h2 class="item-name">{{ query}}</h2>
 
                 </div>
 
@@ -85,370 +90,39 @@
                     </div>
                 </header>
                 <div class="search-results">
+                    {% for food in food_list %}
+                        <div class="results-table__item">
+                            <div class="text-container">
 
+                                <p class="item-content" id="brand-content">
+                                    {{ food["brandOwner"] }}
+                                </p>
+                            </div>
+                            <div class="text-container">
 
-                    <div class="results-table__item">
-                        <div class="text-container">
+                                <p class="item-content" id="portion-size-content">
+                                    {{ food["servingSize"] }}
+                                </p>
+                            </div>
+                            <div class="text-container">
+                                {% set serving_size_for_calculate = food["servingSize"] / 100 %}
+                                {% for nutrient in food["foodNutrients"] %}
+                                    {% if nutrient["nutrientId"] == 1008 %} <!-- 1008 - id of calories -->
+                                        {% set calorie_count_per_portion = nutrient["value"] * serving_size_for_calculate %}
+                                        <p class="item-content" id="calories-content">
+                                            {{ (calorie_count_per_portion)|round(1) }}
+                                        </p>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
 
-                            <p class="item-content" id="brand-content">
-                                Content
-                            </p>
+                            <button class="item-button">
+                                View
+                            </button>
+
                         </div>
-                        <div class="text-container">
+                    {% endfor %}
 
-                            <p class="item-content" id="portion-size-content">
-                                Content
-                            </p>
-                        </div>
-                        <div class="text-container">
-
-                            <p class="item-content" id="calories-content">
-                                Content
-                            </p>
-                        </div>
-
-                        <button class="item-button">
-                            View
-                        </button>
-
-                    </div>
-
-                    <div class="results-table__item">
-                        <div class="text-container">
-
-                            <p class="item-content" id="brand-content">
-                                Content
-                            </p>
-                        </div>
-                        <div class="text-container">
-
-                            <p class="item-content" id="portion-size-content">
-                                Content
-                            </p>
-                        </div>
-                        <div class="text-container">
-
-                            <p class="item-content" id="calories-content">
-                                Content
-                            </p>
-                        </div>
-
-                        <button class="item-button">
-                            View
-                        </button>
-
-                    </div>
-
-                    <div class="results-table__item">
-                        <div class="text-container">
-
-                            <p class="item-content" id="brand-content">
-                                Content
-                            </p>
-                        </div>
-                        <div class="text-container">
-
-                            <p class="item-content" id="portion-size-content">
-                                Content
-                            </p>
-                        </div>
-                        <div class="text-container">
-
-                            <p class="item-content" id="calories-content">
-                                Content
-                            </p>
-                        </div>
-
-                        <button class="item-button">
-                            View
-                        </button>
-
-                    </div>
-
-                    <div class="results-table__item">
-                        <div class="text-container">
-
-                            <p class="item-content" id="brand-content">
-                                Content
-                            </p>
-                        </div>
-                        <div class="text-container">
-
-                            <p class="item-content" id="portion-size-content">
-                                Content
-                            </p>
-                        </div>
-                        <div class="text-container">
-
-                            <p class="item-content" id="calories-content">
-                                Content
-                            </p>
-                        </div>
-
-                        <button class="item-button">
-                            View
-                        </button>
-
-                    </div>
-
-                    <div class="results-table__item">
-                        <div class="text-container">
-
-                            <p class="item-content" id="brand-content">
-                                Content
-                            </p>
-                        </div>
-                        <div class="text-container">
-
-                            <p class="item-content" id="portion-size-content">
-                                Content
-                            </p>
-                        </div>
-                        <div class="text-container">
-
-                            <p class="item-content" id="calories-content">
-                                Content
-                            </p>
-                        </div>
-
-                        <button class="item-button">
-                            View
-                        </button>
-
-                    </div>
-
-                    <div class="results-table__item">
-                        <div class="text-container">
-
-                            <p class="item-content" id="brand-content">
-                                Content
-                            </p>
-                        </div>
-                        <div class="text-container">
-
-                            <p class="item-content" id="portion-size-content">
-                                Content
-                            </p>
-                        </div>
-                        <div class="text-container">
-
-                            <p class="item-content" id="calories-content">
-                                Content
-                            </p>
-                        </div>
-
-                        <button class="item-button">
-                            View
-                        </button>
-
-                    </div>
-
-                    <div class="results-table__item">
-                        <div class="text-container">
-
-                            <p class="item-content" id="brand-content">
-                                Content
-                            </p>
-                        </div>
-                        <div class="text-container">
-
-                            <p class="item-content" id="portion-size-content">
-                                Content
-                            </p>
-                        </div>
-                        <div class="text-container">
-
-                            <p class="item-content" id="calories-content">
-                                Content
-                            </p>
-                        </div>
-
-                        <button class="item-button">
-                            View
-                        </button>
-
-                    </div>
-
-                    <div class="results-table__item">
-                        <div class="text-container">
-
-                            <p class="item-content" id="brand-content">
-                                Content
-                            </p>
-                        </div>
-                        <div class="text-container">
-
-                            <p class="item-content" id="portion-size-content">
-                                Content
-                            </p>
-                        </div>
-                        <div class="text-container">
-
-                            <p class="item-content" id="calories-content">
-                                Content
-                            </p>
-                        </div>
-
-                        <button class="item-button">
-                            View
-                        </button>
-
-                    </div>
-
-                    <div class="results-table__item">
-                        <div class="text-container">
-
-                            <p class="item-content" id="brand-content">
-                                Content
-                            </p>
-                        </div>
-                        <div class="text-container">
-
-                            <p class="item-content" id="portion-size-content">
-                                Content
-                            </p>
-                        </div>
-                        <div class="text-container">
-
-                            <p class="item-content" id="calories-content">
-                                Content
-                            </p>
-                        </div>
-
-                        <button class="item-button">
-                            View
-                        </button>
-
-                    </div>
-
-                    <div class="results-table__item">
-                        <div class="text-container">
-
-                            <p class="item-content" id="brand-content">
-                                Content
-                            </p>
-                        </div>
-                        <div class="text-container">
-
-                            <p class="item-content" id="portion-size-content">
-                                Content
-                            </p>
-                        </div>
-                        <div class="text-container">
-
-                            <p class="item-content" id="calories-content">
-                                Content
-                            </p>
-                        </div>
-
-                        <button class="item-button">
-                            View
-                        </button>
-
-                    </div>
-
-                    <div class="results-table__item">
-                        <div class="text-container">
-
-                            <p class="item-content" id="brand-content">
-                                Content
-                            </p>
-                        </div>
-                        <div class="text-container">
-
-                            <p class="item-content" id="portion-size-content">
-                                Content
-                            </p>
-                        </div>
-                        <div class="text-container">
-
-                            <p class="item-content" id="calories-content">
-                                Content
-                            </p>
-                        </div>
-
-                        <button class="item-button">
-                            View
-                        </button>
-
-                    </div>
-
-                    <div class="results-table__item">
-                        <div class="text-container">
-
-                            <p class="item-content" id="brand-content">
-                                Content
-                            </p>
-                        </div>
-                        <div class="text-container">
-
-                            <p class="item-content" id="portion-size-content">
-                                Content
-                            </p>
-                        </div>
-                        <div class="text-container">
-
-                            <p class="item-content" id="calories-content">
-                                Content
-                            </p>
-                        </div>
-
-                        <button class="item-button">
-                            View
-                        </button>
-
-                    </div>
-
-                    <div class="results-table__item">
-                        <div class="text-container">
-
-                            <p class="item-content" id="brand-content">
-                                Content
-                            </p>
-                        </div>
-                        <div class="text-container">
-
-                            <p class="item-content" id="portion-size-content">
-                                Content
-                            </p>
-                        </div>
-                        <div class="text-container">
-
-                            <p class="item-content" id="calories-content">
-                                Content
-                            </p>
-                        </div>
-
-                        <button class="item-button">
-                            View
-                        </button>
-
-                    </div>
-
-                    <div class="results-table__item">
-                        <div class="text-container">
-
-                            <p class="item-content" id="brand-content">
-                                Content
-                            </p>
-                        </div>
-                        <div class="text-container">
-
-                            <p class="item-content" id="portion-size-content">
-                                Content
-                            </p>
-                        </div>
-                        <div class="text-container">
-
-                            <p class="item-content" id="calories-content">
-                                Content
-                            </p>
-                        </div>
-
-                        <button class="item-button">
-                            View
-                        </button>
-                    </div>
 
                 </div>
             </div>

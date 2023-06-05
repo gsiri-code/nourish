@@ -22,14 +22,14 @@
         </section>
         <section class="search">
             <div class="search-box">
-                <form>
-                    <input type="text" class="input"
+                <form action="search" method="GET">
+                    <input type="text" class="input" name="q"
                            placeholder="Please input a food item or select the following tags" id="input">
                     <div class="buttons">
                         <button id="clear" type="submit" class="btn">
                             <i class="fa-solid fa-circle-xmark fa-xl" style="color: #F2F0D9;"></i>
                         </button>
-                        <button type="submit" class="btn">
+                        <button type="submit" class="btn" value="Submit">
                             <i class="fa-solid fa-magnifying-glass fa-xl" style="color: #F2F0D9;"></i>
                         </button>
                     </div>
