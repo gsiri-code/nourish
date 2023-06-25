@@ -22,7 +22,7 @@
         </section>
         <section class="search">
             <div class="search-box">
-                <form action="search" method="GET">
+                <form id="form" action="search" method="GET">
                     <input type="text" class="input" name="q"
                            placeholder="Please input a food item or select the following tags" id="input">
                     <div class="buttons">
@@ -39,7 +39,7 @@
                 <div class="label">use our search or select a fruit:</div>
                 <div class="buttons-top">
                     <div class="item">
-                        <button class="kiwi" onclick="window.location.href='/redirect-kiwi'">
+                        <button class="kiwi" onclick="window.location.href='/search?q=kiwi'">
                             <svg width="57" height="57" viewBox="0 0 57 57" fill="none"
                                  xmlns="http://www.w3.org/2000/svg">
                                 <path d="M28.5 57C44.2401 57 57 44.2401 57 28.5C57 12.7599 44.2401 0 28.5 0C12.7599 0 0 12.7599 0 28.5C0 44.2401 12.7599 57 28.5 57Z"
@@ -341,6 +341,13 @@
             inp.value = "";
             inp.focus();
         }
+        const form = document.getElementById('form')
+        inp.addEventListener("keydown", (e) => {
+            if (e.keyCode == 13){
+                form.submit();
+
+            }
+        })
 
         document.getElementById("clear").addEventListener("click", clear);
     </script>

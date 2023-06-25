@@ -20,10 +20,10 @@
 
     <main>
         <div class="search-box">
-            <form action="search" method="GET">
-                <input type="text" class="input" name="q" placeholder="Please input a food item or select the following tags">
+            <form id="form" action="search" method="GET">
+                <input id="input" type="text" class="input" name="q" placeholder="Please input a food item or select the following tags">
                 <div class="buttons">
-                    <button class="btn">
+                    <button id="clear" class="btn">
                         <i class="fa-solid fa-circle-xmark fa-xl" style="color: #F2F0D9;"></i>
                     </button>
                     <button type="submit" class="btn" value="Submit">
@@ -95,13 +95,17 @@
                             <div class="text-container">
 
                                 <p class="item-content" id="brand-content">
-                                    {{ food["brandOwner"] }}
+                                    {% if food["brandOwner"] %}
+                                        {{food["brandOwner"]}}
+                                    {% else %}
+                                        <s>UNBRANDED</s>
+                                    {% endif %}
                                 </p>
                             </div>
                             <div class="text-container">
 
                                 <p class="item-content" id="portion-size-content">
-                                    {{ food["servingSize"] }}
+                                    {{ food["servingSize"]|round(1) }}
                                 </p>
                             </div>
                             <div class="text-container">
@@ -116,10 +120,14 @@
                                 {% endfor %}
                             </div>
 
-                            <button class="item-button">
-                                View
-                            </button>
-
+{#
+{##}
+                            <form action="/food/{{food["fdcId"] }}" method="GET">
+                                <input type="hidden" name="food_id" value="{{ food["fdcId"] }}">
+                                <button class="item-button" type="submit" value="Submit">
+                                    View
+                                </button>
+                            </form>
                         </div>
                     {% endfor %}
 
@@ -147,11 +155,34 @@
     </main>
 
     <div class="footer">
-        <button>
+        <button onclick="window.location.href='/redirect-kiwi'">
             See More
         </button>
 
     </div>
+
+    <script defer>
+
+        const inp = document.getElementById("input");
+        const clear = (e) => {
+            e.preventDefault();
+            e.stopPropagation()
+            inp.value = "";
+            inp.focus();
+        }
+        const form = document.getElementById('form')
+        inp.addEventListener("keydown", (e) => {
+            if (e.keyCode == 13){
+                form.submit();
+
+            }
+        })
+
+
+        document.getElementById("clear").addEventListener("click", clear);
+    </script>
+
+
 
 
 

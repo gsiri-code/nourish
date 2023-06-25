@@ -36,9 +36,9 @@ def search():
 
     return render_template('search_page.html', query=query,food_list=food_list, results_count=food_results_count)
 
-@app.route('/redirect-kiwi')
-def redirect_kiwi():
-    return redirect('http://127.0.0.1:5000/search?q=Kiwi')
+# @app.route('/redirect-kiwi')
+# def redirect_kiwi():
+#     return redirect('http://127.0.0.1:5000/search?q=Kiwi')
 
 @app.route('/redirect-apple')
 def redirect_apple():
@@ -79,6 +79,10 @@ def food(food_id):
 def search_page():
     return render_template('search_page.html')
 
-@app.route("/new-results-page")
-def new_results_page():
-    return render_template('new-results-page.html')
+# @app.route("/more-results-page/" , methods=['GET'])
+# def new_results_page():
+#     page = page + 1
+#
+#     return render_template('new-results-page.html')
+#
+#
