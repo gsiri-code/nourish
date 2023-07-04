@@ -155,8 +155,9 @@
     </main>
 
     <div class="footer">
-        <button onclick="window.location.href='/redirect-kiwi'">
+        <button onclick="window.location.href='/search?q={{ query.title() }}'">
             See More
+            {{ pageSize }}
         </button>
 
     </div>

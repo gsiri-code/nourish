@@ -9,7 +9,7 @@ class FoodService:
     def __init__(self):
         self.api_key = os.getenv('API_KEY')
 
-    def search(self, query: str, page: int = 1):
+    def search(self, query: str, page_size: int = 25, page: int = 1):
         """returns
 
         {
@@ -45,12 +45,13 @@ class FoodService:
         }
         """
 
-        url = f'https://api.nal.usda.gov/fdc/v1/foods/search?query={query}&dataType=&pageSize=25&pageNumber={page}&sortBy=dataType.keyword&sortOrder=asc&api_key={self.api_key}'
+        url = f'https://api.nal.usda.gov/fdc/v1/foods/search?query={query}&dataType=&pageSize={page_size}&pageNumber={page}&sortBy=dataType.keyword&sortOrder=asc&api_key={self.api_key}'
         response = requests.get(url).json()
         print(response)
         return {
             'totalHits': response['totalHits'],
             'foods': response['foods'],
+            'pageSize': response['foodSearchCriteria']['pageSize'],
         }
 
     def get(self, id: int):

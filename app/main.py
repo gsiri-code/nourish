@@ -29,12 +29,14 @@ def search():
         food_response = FoodService().search(query)
         food_list = food_response['foods']
         food_results_count = food_response['totalHits']
+        pageSize = food_response['pageSize']
     except requests.exceptions.Timeout:
         return 'Timeout error, check your internet connection and try again'
     except KeyError:
         return f"Your search inquiry doesn't exist, make sure that you haven't typed special symbols"
 
-    return render_template('search_page.html', query=query, food_list=food_list, results_count=food_results_count)
+    return render_template('search_page.html', query=query, food_list=food_list, results_count=food_results_count,
+                           pageSize=pageSize)
 
 
 @app.route('/food/<food_id>')
@@ -47,9 +49,11 @@ def food(food_id):
     return render_template('food-details.html', food_info=food_info, nutrients_info=food_info['labelNutrients'])
 
 
-@app.route("/search-page")
-def search_page():
-    return render_template('search_page.html')
+
+#@app.route("/search-page")
+#def search_page():
+#    return render_template('search_page.html')
+
 
 # @app.route("/more-results-page/" , methods=['GET'])
 # def new_results_page():
