@@ -27,11 +27,19 @@ def search():
         print(query)
 
         page = request.args.get('page')
+        if (page == None):
+            page = 1
+
         food_response = FoodService().search(query, page=page)
         food_list = food_response['foods']
         food_results_count = food_response['totalHits']
         pageSize = food_response['pageSize']
 
+        if(page != 1):
+
+            return render_template('more-result-page.html', query=query, food_list=food_list,
+                                   results_count=food_results_count,
+                                   pageSize=pageSize, page=page)
         page = food_response['currentPage']
 
     except requests.exceptions.Timeout:
@@ -52,10 +60,8 @@ def food(food_id):
 
     return render_template('food-details.html', food_info=food_info, nutrients_info=food_info['labelNutrients'])
 
-
-
-#@app.route("/search-page")
-#def search_page():
+# @app.route("/search-page")
+# def search_page():
 #    return render_template('search_page.html')
 
 

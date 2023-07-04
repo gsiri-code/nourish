@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p>{{ results_count }} results</p>
+<br>
+{% for food in food_list %}
+    <span class="hidden">{{ food["fdcId"] }}</span>
+    <p>Product name: {{ food["description"] }}</p>
+    <p>Brand owner: {{ food["brandOwner"] }}</p>
+    <p>Serving Size: {{ food["servingSize"] }}</p>
+
+    {% set serving_size_for_calculate = food["servingSize"] / 100 %}
+    {% for nutrient in food["foodNutrients"] %}
+        {% if nutrient["nutrientId"] == 1008 %} <!-- 1008 - id of calories -->
+            {% set calorie_count_per_portion = nutrient["value"] * serving_size_for_calculate %}
+            <p>Calories: {{ (calorie_count_per_portion)|round(1) }}</p><br>
+
+            {% endif %}
+        {% endfor %}
+{% endfor %}
+
+<div class="footer">
+    <button onclick="window.location.href='/search?q={{ query }}&page={{ page }}&pagesize={{ pageSize }}'"> {#get rid of { page }#}
+        See More
+        {{ pageSize }}
+    </button>
+
+</div>
+
+</body>
+</html>
