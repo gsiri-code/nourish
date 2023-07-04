@@ -155,9 +155,9 @@
     </main>
 
     <div class="footer">
-        <button onclick="window.location.href='/search?q={{ query.title() }}'">
+        <button onclick="window.location.href='/search?q={{ query }}&page={{ page + 1}}'">
             See More
-            {{ pageSize }}
+            {{ page }}
         </button>
 
     </div>

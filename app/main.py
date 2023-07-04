@@ -26,17 +26,21 @@ def search():
         query = request.args.get('q')
         print(query)
 
-        food_response = FoodService().search(query)
+        page = request.args.get('page')
+        food_response = FoodService().search(query, page=page)
         food_list = food_response['foods']
         food_results_count = food_response['totalHits']
         pageSize = food_response['pageSize']
+
+        page = food_response['currentPage']
+
     except requests.exceptions.Timeout:
         return 'Timeout error, check your internet connection and try again'
     except KeyError:
         return f"Your search inquiry doesn't exist, make sure that you haven't typed special symbols"
 
     return render_template('search_page.html', query=query, food_list=food_list, results_count=food_results_count,
-                           pageSize=pageSize)
+                           pageSize=pageSize, page=page)
 
 
 @app.route('/food/<food_id>')
