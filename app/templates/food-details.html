@@ -63,7 +63,10 @@
             </div>
             <div class="content-item">
                 <header class="title">Cholesterol:</header>
-                <div class="description">{{nutrients_info['cholesterol']['value']}} mg</div>
+                <div class="description">{% if nutrients_info['cholesterol'] %}
+                    {{nutrients_info['cholesterol']['value']}}
+                    {% else %} 0
+                {% endif %} mg</div>
             </div>
         </div>
     </div>
