@@ -24,7 +24,7 @@
 {% endfor %}
 
 <div class="footer">
-    <button onclick="window.location.href='/search?q={{ query }}&page={{ page }}&pagesize={{ pageSize }}'"> {#get rid of { page }#}
+    <button onclick="window.location.href='/search?q={{ query }}&page={{ page }}&pagesize={{ pageSize + 25 }}'">
         See More
         {{ pageSize }}
     </button>

@@ -24,23 +24,25 @@ def welcome_page():
 def search():
     try:
         query = request.args.get('q')
-        print(query)
 
         page = request.args.get('page')
+        pageSize = request.args.get('pagesize')
         if (page == None):
             page = 1
+        if(pageSize == None):
+            pageSize = 25
 
-        food_response = FoodService().search(query, page=page)
+
+        food_response = FoodService().search(query, page=page, pageSize=pageSize)
         food_list = food_response['foods']
         food_results_count = food_response['totalHits']
-        pageSize = food_response['pageSize']
-
-        if(page != 1):
-
+        if (page != 1):
+            pageSize = food_response['pageSize']
             return render_template('more-result-page.html', query=query, food_list=food_list,
                                    results_count=food_results_count,
                                    pageSize=pageSize, page=page)
         page = food_response['currentPage']
+        pageSize = food_response['pageSize']
 
     except requests.exceptions.Timeout:
         return 'Timeout error, check your internet connection and try again'
@@ -48,7 +50,7 @@ def search():
         return f"Your search inquiry doesn't exist, make sure that you haven't typed special symbols"
 
     return render_template('search_page.html', query=query, food_list=food_list, results_count=food_results_count,
-                           pageSize=pageSize, page=page)
+                           page=page, pageSize=pageSize)
 
 
 @app.route('/food/<food_id>')
