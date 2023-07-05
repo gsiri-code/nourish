@@ -19,9 +19,18 @@
             {% set calorie_count_per_portion = nutrient["value"] * serving_size_for_calculate %}
             <p>Calories: {{ (calorie_count_per_portion)|round(1) }}</p><br>
 
-            {% endif %}
-        {% endfor %}
+        {% endif %}
+    {% endfor %}
+
+    <form action="/food/{{ food["fdcId"] }}" method="GET">
+        <input type="hidden" name="f    ood_id" value="{{ food["fdcId"] }}">
+        <button class="item-button" type="submit" value="Submit">
+            View
+        </button>
+    </form>
+
 {% endfor %}
+
 
 <div class="footer">
     <button onclick="window.location.href='/search?q={{ query }}&pageSize={{ pageSize + 25 }}'">
