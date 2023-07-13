@@ -1,8 +1,8 @@
 # About nourish
 Nourish is an app to keep track of your calorie intake
 ![welcome.gif](welcomeGif.gif)
-___
-##To start
+
+## To start
 ```shell
 python3 -m venv venv
 . venv/bin/activate
@@ -12,7 +12,6 @@ echo "API_KEY="Your API KEY without quotes"" > .env
 # To run app
 flask --app app/main run
 ```
-___
 ### Where to get API_KEY
 
 1. Go to https://fdc.nal.usda.gov/api-key-signup.html 
