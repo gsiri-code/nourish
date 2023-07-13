@@ -104,6 +104,60 @@ main{
     box-shadow: 10px 10px 0 0 rgba(148, 177, 148, 1);
 }
 
+/*.search-buttons button {*/
+/*    border: 0;*/
+/*    width: 100px;*/
+/*    height: 100px;*/
+/*    border-radius: 50%;*/
+/*    background: #94B194;*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*}*/
+
+/*.search-buttons .buttons-top {*/
+/*    display: grid;*/
+/*    grid-template:  "a a" 1fr;*/
+/*    background: #ACCCAC;*/
+/*    border-radius: 10px 10px 0 0;*/
+/*    width: 300px;*/
+/*    height: 150px;*/
+/*    float: left;*/
+/*    -webkit-box-shadow: 10px 10px 0 0 rgba(148, 177, 148, 1);*/
+/*    -moz-box-shadow: 10px 10px 0 0 rgba(148, 177, 148, 1);*/
+/*    box-shadow: 10px 10px 0 0 rgba(148, 177, 148, 1);*/
+/*}*/
+
+/*.search-buttons .buttons-bottom {*/
+/*    display: grid;*/
+/*    grid-template:  "a a a a a a a" 1fr;*/
+/*    background: #ACCCAC;*/
+/*    border-radius: 0 10px 10px 10px;*/
+/*    width: 960px;*/
+/*    height: 150px;*/
+/*    float: left;*/
+/*    -webkit-box-shadow: 10px 10px 0 0 rgba(148, 177, 148, 1);*/
+/*    -moz-box-shadow: 10px 10px 0 0 rgba(148, 177, 148, 1);*/
+/*    box-shadow: 10px 10px 0 0 rgba(148, 177, 148, 1);*/
+/*}*/
+
+
+.input:focus {
+    outline: none;
+}
+
+
+.btn {
+    cursor: pointer;
+    transition: .3s;
+}
+
+.btn:hover {
+    transform: scale(1.1);
+}
+
+
+
 .example_food_container{
     display: flex;
     justify-content: space-around;
@@ -154,7 +208,7 @@ main{
 .search-results-container{
     background-color: #F5C28E;
     float:right;
-    margin: 100px 40px 0 0;
+    margin: 130px 40px 0 0;
     width: 60%;
     border-radius: 10px;
     padding: 15px;
@@ -255,12 +309,25 @@ main{
     display: flex;
 }
 
+.text-container{
+    max-width: 50px;
+}
+form{
+    background-color: #F2F0D9;
+    transition: .3s;
+    border: 1px solid transparent;
+    padding: 10px 0;
+    justify-content: space-around;
+    align-items: center;
+    display: flex;
+    width: 30%;
+}
 .item-button{
     padding:0 20px;
     border:0;
     background-color: #ACCCAC;
     color: #F2F0D9;
-    width:30%;
+    width: 130%;
     height:30px;
     border-radius: 10px;
     transition:0.1s;
@@ -413,13 +480,19 @@ main{
 
 
     }
+
+    form{
+        width: 30%;
+    }
     .results-table__item{
         min-width: 100px;
         flex-direction: column;
     }
 
+
     .item-button{
-        min-width: 70px;
+
+        min-width: 90px;
         height: 50px;
         justify-content: center;
     }
@@ -451,7 +524,7 @@ main{
 
     .search-results-container{
         width: 100%;
-        margin-top: 120px;
+        margin-top: 150px;
 
     }
 
