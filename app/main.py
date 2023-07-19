@@ -1,9 +1,12 @@
-from flask import Flask, request, render_template, url_for, redirect
+from flask import Flask, request, render_template, url_for, redirect,jsonify
 from pip._vendor import requests
+from flask_cors import CORS
 
 from services.FoodService import *
 
 app = Flask(__name__)
+CORS(app)
+
 
 
 @app.route("/")
@@ -56,15 +59,22 @@ def food(food_id):
 
     return render_template('food-details.html', food_info=food_info, nutrients_info=food_info['labelNutrients'])
 
-# @app.route("/search-page")
-# def search_page():
-#    return render_template('search_page.html')
 
+@app.route('/api/<query>', methods=['GET'])
+def see_more(query):
+    try:
+        pageNumber = request.args.get('pageNumber', 1, type=int)  # defaults to the second page if not provided
+        # pageSize = request.args.get('pageSize', 25, type=int)  # defaults to 25 if not provided
 
-# @app.route("/more-results-page/" , methods=['GET'])
-# def new_results_page():
-#     page = page + 1
-#
-#     return render_template('new-results-page.html')
-#
-#
+        food_response = FoodService().search(query, pageNumber=pageNumber)
+        food_list = food_response['foods']
+
+        return jsonify({
+            'food_list': food_list,
+            'pageNumber': pageNumber
+        })
+    except requests.exceptions.Timeout:
+        return jsonify({'error': 'Timeout error, check your internet connection and try again'})
+    except KeyError:
+        return jsonify({'error': "Your search inquiry doesn't exist, make sure that you haven't typed special symbols"})
+

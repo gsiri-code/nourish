@@ -27,7 +27,13 @@
         <div class="content">
             <div class="content-item">
                 <header class="title">Category:</header>
-                <div class="description">{{food_info['brandedFoodCategory']}}</div>
+                <div class="description">
+                    {% if food_info["brandedFoodCategory"] %}
+                        {{food_info["brandedFoodCategory"]}}
+                    {% else %}
+                        <p>N/A</p>
+                    {% endif %}
+                </div>
             </div>
             <div class="content-item">
                 <header class="title">Food Description:</header>
