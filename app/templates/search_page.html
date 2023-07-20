@@ -89,51 +89,7 @@
                         </p>
                     </div>
                 </header>
-                <div class="search-results" id="search-results-container">
-                    {% for food in food_list %}
-                        <div class="results-table__item">
-                            <div class="text-container">
-
-                                <p class="item-content" id="brand-content">
-                                    {% if food["brandName"] %}
-                                        {{food["brandName"]}}
-                                    {% else %}
-                                        <s>UNBRANDED</s>
-                                    {% endif %}
-                                </p>
-                            </div>
-                            <div class="text-container">
-
-                                <p class="item-content" id="portion-size-content">
-                                    {{ food["servingSize"]|round(1) }}
-                                </p>
-                            </div>
-
-                            <div class="text-container">
-
-                        {#Below is current current code!!!!#}
-                                {% set serving_size_for_calculate = food["servingSize"] / 100 %}
-                                {% for nutrient in food["foodNutrients"] %}
-                                    {% if nutrient["nutrientId"] == 1008 %} <!-- 1008 - id of calories -->
-                                        {% set calorie_count_per_portion = nutrient["value"] * serving_size_for_calculate %}
-                                        <p class="item-content" id="calories-content">
-                                            {{ (calorie_count_per_portion)|round(1) }}
-                                        </p>
-                                    {% endif %}
-                                {% endfor %}
-                            </div>
-
-                            <form action="/food/{{food["fdcId"] }}" method="GET">
-                                <input type="hidden" name="f    ood_id" value="{{ food["fdcId"] }}">
-                                <button class="item-button" type="submit" value="Submit">
-                                    View
-                                </button>
-                            </form>
-                        </div>
-                    {% endfor %}
-
-
-                </div>
+                <div class="search-results" id="search-results-container"></div>
             </div>
 
         </section>
@@ -147,38 +103,6 @@
         </button>
     </div>
 
-
-
-{#
-Portion Size (g): element.servingsize
-itemID: element.fdcid
-
-#}
-
-{#current working code below#}
-{#    <script>#}
-{#    let pageNumber = 2;  // Start at page 1#}
-{##}
-{#    const clickHandler = async () => {#}
-{#        const data = await fetch(`http://127.0.0.1:5000/api/{{ query }}?pageNumber=${pageNumber}`)  // Include pageNumber in API call#}
-{#        const json = await data.json()#}
-{#        console.log(json)#}
-{##}
-{#        json.food_list.map((element) => {#}
-{#            if (element.brandName) {#}
-{#                // If the element has a brandName property, display it#}
-{#                document.getElementById('data').innerHTML += `<h3>${element.brandName}</h3>`;#}
-{#            } else {#}
-{#                // If the element does not have a brandName property, display 'N/A' or any other placeholder#}
-{#                document.getElementById('data').innerHTML += `<s>UNBRANDED</s>`;#}
-{#            }#}
-{#        })#}
-{##}
-{#        pageNumber++;  // Increment page number after every API call#}
-{#    }#}
-{##}
-{#    document.getElementById('loadMoreBtn').addEventListener('click', clickHandler);#}
-{#    </script>#}
 
     <script>
 let pageNumber = 1;  // Start at page 1
@@ -203,6 +127,10 @@ const clickHandler = async () => {
             }
         }
 
+        if (!caloriesContent) {
+            caloriesContent = 'No Data';
+        }
+
         document.getElementById('search-results-container').innerHTML +=
         `<div class="results-table__item">
             <div class="text-container">
@@ -225,6 +153,8 @@ const clickHandler = async () => {
 }
 
 document.getElementById('loadMoreBtn').addEventListener('click', clickHandler);
+
+document.addEventListener('DOMContentLoaded', clickHandler);
 </script>
 
 
@@ -263,22 +193,3 @@ document.getElementById('loadMoreBtn').addEventListener('click', clickHandler);
 
 </body>
 </html>
-
-
-{#                                {% set serving_size_for_calculate = food["servingSize"] / 100 %}#}
-{#                                {% set calorie_found = false %}#}
-{#                                {% set calorie_count_per_portion = 0 %}#}
-{#                                {% for nutrient in food["foodNutrients"] %}#}
-{#                                    {% if nutrient["nutrientId"] == 1008 %} <!-- 1008 - id of calories -->#}
-{#                                        {% set calorie_found = true %}#}
-{#                                        {% set calorie_count_per_portion = nutrient["value"] * serving_size_for_calculate %}#}
-{#                                    {% endif %}#}
-{#                                {% endfor %}#}
-{##}
-{#                                <p class="item-content" id="calories-content">#}
-{#                                    {% if calorie_found %}#}
-{#                                        {{ (calorie_count_per_portion)|round(1) }}#}
-{#                                    {% else %}#}
-{#                                        N/A#}
-{#                                    {% endif %}#}
-{#                                </p>#}
