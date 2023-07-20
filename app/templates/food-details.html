@@ -16,9 +16,9 @@
         <div class="name" id="name">
             <h1>
                 {% if food_info["brandOwner"] %}
-                    {{food_info["brandOwner"]}}
+                {{food_info["brandOwner"]}}
                 {% else %}
-                    <s>UNBRANDED</s>
+                <s>UNBRANDED</s>
                 {% endif %}
             </h1>
         </div>
@@ -29,9 +29,9 @@
                 <header class="title">Category:</header>
                 <div class="description">
                     {% if food_info["brandedFoodCategory"] %}
-                        {{food_info["brandedFoodCategory"]}}
+                    {{food_info["brandedFoodCategory"]}}
                     {% else %}
-                        <p>N/A</p>
+                    <p>N/A</p>
                     {% endif %}
                 </div>
             </div>
@@ -45,34 +45,59 @@
             </div>
             <div class="content-item">
                 <header class="title">Energy:</header>
+                {% if nutrients_info['calories'] %}
                 <div class="description">{{nutrients_info['calories']['value']}} kcal</div>
+                {% else %}
+                <div class="description">No Data</div>
+                {% endif %}
             </div>
             <div class="content-item">
                 <header class="title">Protein:</header>
+                {% if nutrients_info['protein'] %}
                 <div class="description">{{nutrients_info['protein']['value']}} g</div>
+                {% else %}
+                <div class="description">No Data</div>
+                {% endif %}
             </div>
             <div class="content-item">
                 <header class="title">Fat:</header>
+                {% if nutrients_info['fat'] %}
                 <div class="description">{{nutrients_info['fat']['value']}} g</div>
+                {% else %}
+                <div class="description">No Data</div>
+                {% endif %}
             </div>
             <div class="content-item">
                 <header class="title">Carbohydrate:</header>
-                <div class="description">{{nutrients_info['carbohydrates']['value']}} g</div>
+                {% if nutrients_info['carbohydrate'] %}
+                <div class="description">{{nutrients_info['carbohydrate']['value']}} g</div>
+                {% else %}
+                <div class="description">No Data</div>
+                {% endif %}
             </div>
             <div class="content-item">
                 <header class="title">Fiber:</header>
+                {% if nutrients_info['fiber'] %}
                 <div class="description">{{nutrients_info['fiber']['value']}} g</div>
+                {% else %}
+                <div class="description">No Data</div>
+                {% endif %}
             </div>
             <div class="content-item">
                 <header class="title">Sugars:</header>
+                {% if nutrients_info['sugars'] %}
                 <div class="description">{{nutrients_info['sugars']['value']}} g</div>
+                {% else %}
+                <div class="description">No Data</div>
+                {% endif %}
             </div>
             <div class="content-item">
                 <header class="title">Cholesterol:</header>
-                <div class="description">{% if nutrients_info['cholesterol'] %}
-                    {{nutrients_info['cholesterol']['value']}}
-                    {% else %} 0
-                {% endif %} mg</div>
+                {% if nutrients_info['cholesterol'] %}
+                <div class="description">{{nutrients_info['cholesterol']['value']}} mg</div>
+                {% else %}
+                <div class="description">No Data</div>
+                {% endif %}
             </div>
         </div>
     </div>
