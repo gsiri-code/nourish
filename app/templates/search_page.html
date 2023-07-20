@@ -21,7 +21,7 @@
     <main>
         <div class="search-box">
             <form id="form" action="search" method="GET">
-                <input id="input" type="text" class="input" name="q" placeholder="Please input a food item or select the following tags">
+                <input id="input" type="text" class="input" name="q" placeholder="Please input a food item ">
                 <div class="buttons">
                     <button id="clear" class="btn">
                         <i class="fa-solid fa-circle-xmark fa-xl" style="color: #F2F0D9;"></i>
@@ -89,14 +89,14 @@
                         </p>
                     </div>
                 </header>
-                <div class="search-results">
+                <div class="search-results" id="search-results-container">
                     {% for food in food_list %}
                         <div class="results-table__item">
                             <div class="text-container">
 
                                 <p class="item-content" id="brand-content">
-                                    {% if food["brandOwner"] %}
-                                        {{food["brandOwner"]}}
+                                    {% if food["brandName"] %}
+                                        {{food["brandName"]}}
                                     {% else %}
                                         <s>UNBRANDED</s>
                                     {% endif %}
@@ -109,28 +109,9 @@
                                 </p>
                             </div>
 
-
-
-
                             <div class="text-container">
-{#                                {% set serving_size_for_calculate = food["servingSize"] / 100 %}#}
-{#                                {% set calorie_found = false %}#}
-{#                                {% set calorie_count_per_portion = 0 %}#}
-{#                                {% for nutrient in food["foodNutrients"] %}#}
-{#                                    {% if nutrient["nutrientId"] == 1008 %} <!-- 1008 - id of calories -->#}
-{#                                        {% set calorie_found = true %}#}
-{#                                        {% set calorie_count_per_portion = nutrient["value"] * serving_size_for_calculate %}#}
-{#                                    {% endif %}#}
-{#                                {% endfor %}#}
-{##}
-{#                                <p class="item-content" id="calories-content">#}
-{#                                    {% if calorie_found %}#}
-{#                                        {{ (calorie_count_per_portion)|round(1) }}#}
-{#                                    {% else %}#}
-{#                                        N/A#}
-{#                                    {% endif %}#}
-{#                                </p>#}
 
+                        {#Below is current current code!!!!#}
                                 {% set serving_size_for_calculate = food["servingSize"] / 100 %}
                                 {% for nutrient in food["foodNutrients"] %}
                                     {% if nutrient["nutrientId"] == 1008 %} <!-- 1008 - id of calories -->
@@ -141,9 +122,6 @@
                                     {% endif %}
                                 {% endfor %}
                             </div>
-
-
-
 
                             <form action="/food/{{food["fdcId"] }}" method="GET">
                                 <input type="hidden" name="f    ood_id" value="{{ food["fdcId"] }}">
@@ -161,27 +139,28 @@
         </section>
     </main>
 
-{#    <div class="footer">#}
-{#        <button id="loadMoreBtn" onclick="window.location.href='/search?q={{ query }}&pageSize={{ pageSize + 25}}'">#}
-{#            See More#}
-{#        </button>#}
-{##}
-{#    </div>#}
+
 
     <div class="footer">
-        <button id="loadMoreBtn" data-url="/search?q={{ query }}&pageSize={{pageSize + 25}}">
+        <button id="loadMoreBtn">
             See More
         </button>
     </div>
 
-    <div id="data">
-        ball sack nigga
-    </div>
 
 
-{#<script defer >#}
+{#
+Portion Size (g): element.servingsize
+itemID: element.fdcid
+
+#}
+
+{#current working code below#}
+{#    <script>#}
+{#    let pageNumber = 2;  // Start at page 1#}
+{##}
 {#    const clickHandler = async () => {#}
-{#        const data = await fetch('http://127.0.0.1:5000/api/{{ query }}')#}
+{#        const data = await fetch(`http://127.0.0.1:5000/api/{{ query }}?pageNumber=${pageNumber}`)  // Include pageNumber in API call#}
 {#        const json = await data.json()#}
 {#        console.log(json)#}
 {##}
@@ -191,54 +170,65 @@
 {#                document.getElementById('data').innerHTML += `<h3>${element.brandName}</h3>`;#}
 {#            } else {#}
 {#                // If the element does not have a brandName property, display 'N/A' or any other placeholder#}
-{#                document.getElementById('data').innerHTML += `<h3>N/A</h3>`;#}
+{#                document.getElementById('data').innerHTML += `<s>UNBRANDED</s>`;#}
 {#            }#}
 {#        })#}
+{##}
+{#        pageNumber++;  // Increment page number after every API call#}
 {#    }#}
 {##}
 {#    document.getElementById('loadMoreBtn').addEventListener('click', clickHandler);#}
-{#</script>#}
+{#    </script>#}
 
     <script>
-    let pageNumber = 1;  // Start at page 1
+let pageNumber = 1;  // Start at page 1
 
-    const clickHandler = async () => {
-        const data = await fetch(`http://127.0.0.1:5000/api/{{ query }}?pageNumber=${pageNumber}`)  // Include pageNumber in API call
-        const json = await data.json()
-        console.log(json)
+const clickHandler = async () => {
+    const data = await fetch(`http://127.0.0.1:5000/api/{{ query }}?pageNumber=${pageNumber}`)  // Include pageNumber in API call
+    const json = await data.json()
+    console.log(json)
 
-        json.food_list.map((element) => {
-            if (element.brandName) {
-                // If the element has a brandName property, display it
-                document.getElementById('data').innerHTML += `<h3>${element.brandName}</h3>`;
-            } else {
-                // If the element does not have a brandName property, display 'N/A' or any other placeholder
-                document.getElementById('data').innerHTML += `<h3>N/A</h3>`;
+    json.food_list.map((food) => {
+        let brandName = food.brandName || '<s>UNBRANDED</s>';
+        let portionSize = food.servingSize.toFixed(1);
+        let fdcId = food.fdcId;
+
+        let caloriesContent;
+        for (let nutrient of food.foodNutrients) {
+            if (nutrient.nutrientId === 1008) {
+                let servingSizeForCalculate = food.servingSize / 100;
+                let calorieCountPerPortion = nutrient.value * servingSizeForCalculate;
+                caloriesContent = calorieCountPerPortion.toFixed(1);
+                break;
             }
-        })
+        }
 
-        pageNumber++;  // Increment page number after every API call
-    }
+        document.getElementById('search-results-container').innerHTML +=
+        `<div class="results-table__item">
+            <div class="text-container">
+                <p class="item-content" id="brand-content">${brandName}</p>
+            </div>
+            <div class="text-container">
+                <p class="item-content" id="portion-size-content">${portionSize}</p>
+            </div>
+            <div class="text-container">
+                <p class="item-content" id="calories-content">${caloriesContent}</p>
+            </div>
+            <form action="/food/${fdcId}" method="GET">
+                <input type="hidden" name="food_id" value="${fdcId}">
+                <button class="item-button" type="submit" value="Submit">View</button>
+            </form>
+        </div>`;
+    });
 
-    document.getElementById('loadMoreBtn').addEventListener('click', clickHandler);
+    pageNumber++;  // Increment page number after every API call
+}
+
+document.getElementById('loadMoreBtn').addEventListener('click', clickHandler);
 </script>
 
 
 
-{#prev code#}
-{#    <script>#}
-{#        const clickHandler = async () => {#}
-{#            const data = await fetch('http://127.0.0.1:5000/api/{{ query }}')#}
-{#            const json = await data.json()#}
-{#            console.log(json)#}
-{##}
-{#            json.food_list.map((element) => {#}
-{#                document.getElementById('data').innerHTML += `<h3>${element.brandName}</h3>`;#}
-{#            })#}
-{#        }#}
-{##}
-{#        document.getElementById('loadMoreBtn').addEventListener('click', clickHandler);#}
-{#    </script>#}
 
 
 
@@ -273,3 +263,22 @@
 
 </body>
 </html>
+
+
+{#                                {% set serving_size_for_calculate = food["servingSize"] / 100 %}#}
+{#                                {% set calorie_found = false %}#}
+{#                                {% set calorie_count_per_portion = 0 %}#}
+{#                                {% for nutrient in food["foodNutrients"] %}#}
+{#                                    {% if nutrient["nutrientId"] == 1008 %} <!-- 1008 - id of calories -->#}
+{#                                        {% set calorie_found = true %}#}
+{#                                        {% set calorie_count_per_portion = nutrient["value"] * serving_size_for_calculate %}#}
+{#                                    {% endif %}#}
+{#                                {% endfor %}#}
+{##}
+{#                                <p class="item-content" id="calories-content">#}
+{#                                    {% if calorie_found %}#}
+{#                                        {{ (calorie_count_per_portion)|round(1) }}#}
+{#                                    {% else %}#}
+{#                                        N/A#}
+{#                                    {% endif %}#}
+{#                                </p>#}

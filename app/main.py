@@ -64,8 +64,6 @@ def food(food_id):
 def see_more(query):
     try:
         pageNumber = request.args.get('pageNumber', 1, type=int)  # defaults to the second page if not provided
-        # pageSize = request.args.get('pageSize', 25, type=int)  # defaults to 25 if not provided
-
         food_response = FoodService().search(query, pageNumber=pageNumber)
         food_list = food_response['foods']
 
